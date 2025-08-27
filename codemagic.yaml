@@ -1,9 +1,36 @@
-- name: Bundle JS for Android
-  script: |
-    mkdir -p android/app/src/main/assets
-    npx react-native bundle \
-      --platform android \
-      --dev false \
-      --entry-file index.js \
-      --bundle-output android/app/src/main/assets/index.android.bundle \
-      --assets-dest android/app/src/main/res/
+workflows:
+  react-native-app:
+    name: React Native App
+    max_build_duration: 60
+    environment:
+      node: 18
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+          # Navigation packages
+          npm install @react-navigation/native @react-navigation/native-stack
+          npm install react-native-screens react-native-safe-area-context
+          npm install react-native-gesture-handler react-native-reanimated react-native-get-random-values
+          # WebView package
+          npm install react-native-webview
+          # AsyncStorage
+          npm install @react-native-async-storage/async-storage
+      - name: Fix Gradle permissions
+        script: chmod +x android/gradlew
+      - name: Bundle JS for Android
+        script: |
+          mkdir -p android/app/src/main/assets
+          npx react-native bundle \
+            --platform android \
+            --dev false \
+            --entry-file index.js \
+            --bundle-output android/app/src/main/assets/index.android.bundle \
+            --assets-dest android/app/src/main/res/
+      - name: Build Android debug APK
+        script: cd android && ./gradlew assembleDebug
+      - name: Build Android release AAB
+        script: cd android && ./gradlew bundleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/*.aab
