@@ -1,0 +1,56 @@
+[
+  {
+    "id": "animals",
+    "title": "Animals",
+    "description": "Learn about animals in AR.",
+    "questions": [
+      {
+        "prompt": "Which one says 'meow'?",
+        "choices": [
+          "Dog",
+          "Cat",
+          "Cow"
+        ],
+        "answer": "Cat",
+        "difficulty": 1
+      },
+      {
+        "prompt": "Which one is the largest land animal?",
+        "choices": [
+          "Elephant",
+          "Lion",
+          "Giraffe"
+        ],
+        "answer": "Elephant",
+        "difficulty": 2
+      }
+    ]
+  },
+  {
+    "id": "planets",
+    "title": "Planets",
+    "description": "Explore planets in AR.",
+    "questions": [
+      {
+        "prompt": "Which planet do we live on?",
+        "choices": [
+          "Mars",
+          "Earth",
+          "Venus"
+        ],
+        "answer": "Earth",
+        "difficulty": 1
+      },
+      {
+        "prompt": "Which is the largest planet?",
+        "choices": [
+          "Saturn",
+          "Jupiter",
+          "Neptune"
+        ],
+        "answer": "Jupiter",
+        "difficulty": 2
+      }
+    ]
+  }
+]
