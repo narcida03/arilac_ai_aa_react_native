@@ -9,7 +9,18 @@ workflows:
         script: npm install
       - name: Fix Gradle permissions
         script: chmod +x android/gradlew
-      - name: Build Android debug
+      - name: Bundle JS for Android
+        script: |
+          npx react-native bundle \
+            --platform android \
+            --dev false \
+            --entry-file index.js \
+            --bundle-output android/app/src/main/assets/index.android.bundle \
+            --assets-dest android/app/src/main/res/
+      - name: Build Android debug APK
         script: cd android && ./gradlew assembleDebug
+      - name: Build Android release AAB
+        script: cd android && ./gradlew bundleRelease
     artifacts:
       - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/*.aab
