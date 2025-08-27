@@ -8,12 +8,12 @@ workflows:
       - name: Install dependencies
         script: |
           npm install
-          # React Navigation core
-          npm install @react-navigation/native
-          npm install @react-navigation/native-stack
-          # React Native gesture + reanimated dependencies
+          # Navigation packages
+          npm install @react-navigation/native @react-navigation/native-stack
           npm install react-native-screens react-native-safe-area-context
           npm install react-native-gesture-handler react-native-reanimated react-native-get-random-values
+          # WebView package
+          npm install react-native-webview
       - name: Fix Gradle permissions
         script: chmod +x android/gradlew
       - name: Bundle JS for Android
